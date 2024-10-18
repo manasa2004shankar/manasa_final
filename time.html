@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General body styles */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation bar */
+
+        nav {
+            background-color: #121212;
+            padding: 40px;
+            text-align: right;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1.2em;
+            font-weight: 400;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: white;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a.active {
+            color: #9b6bf1;
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #9b6bf1;
+        }
+
+        /* Main content area */
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content:flex-start;
+            align-items: left;
+             padding: 50px 10%;
+       
+        }
+
+        /* Left section for text */
+
+        .text-section {
+            flex: 4;
+            max-width: 60%;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        h1 span {
+            color: #9b6bf1;
+        }
+
+        .sub-title {
+            font-size: 1.5em;
+            font-weight: 300;
+            
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .sub-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background-color: white;
+            bottom: 0;
+            left: 40%;
+            transform: translateX(-50%);
+        }
+
+        .description {
+           
+            font-weight: 300;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #9b6bf1;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #9b6bf1;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: white;
+            color: #9b6bf1;
+        }
+
+        /* Right section for profile image */
+
+        .profile-pic {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background-color: #9b6bf1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 50px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Image inside profile pic */
+
+        .profile-pic img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        /* Zoom in and add glow effect on hover */
+
+        .profile-pic:hover {
+            transform: scale(1.1);
+            /* Zoom in */
+            box-shadow: 0 0 30px 15px rgba(155, 107, 241, 0.6);
+            /* Purple glow */
+        }
+
+        /* Responsive Design */
+
+        @media (max-width: 1024px) {
+            .container {
+                padding: 40px 5%;
+            }
+
+            .text-section {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 5%;
+            }
+
+            .text-section {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .profile-pic {
+                margin-left: 0;
+                margin-top: 30px;
+                width: 300px;
+                height: 300px;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 20px;
+                text-align: center;
+            }
+
+            nav a {
+                font-size: 1em;
+                margin-left: 15px;
+            }
+
+            .container {
+                padding: 20px 5%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .profile-pic {
+                width: 200px;
+                height: 200px;
+            }
+
+            .btn {
+                padding: 7px 12px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* Background Video */
+
+        .video-background {
+         
+            top: 100;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: no;
+            z-index: -1;
+        }
+
+        video {
+            position: relative;
+            top: 100;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: 300;
+            height: 400;
+            transform: translate(-50%, -10%);
+            z-index: -5;
+            background-size: 50%;
+        }
+
+        /* Hero Section */
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 4em;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+       
+        /* About Me Section */
+        .about-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px;
+        }
+
+        /* Text area */
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .about-text h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: white;
+            margin-top: 10px;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Learn More button */
+        .learn-more-btn {
+            padding: 10px 30px;
+            background-color: #B6A6FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            border-radius: 8px;
+            border: 2px solid #9b6bf1;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background-color: white;
+            color: #8E59FF;
+        }
+
+        /* Image area */
+        .about-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .about-image img {
+            border-radius: 40px;
+            width: 500px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for smooth effect */
+        }
+
+        .about-image img:hover {
+            transform: scale(1.1); /* Zoom in on hover */
+            box-shadow: 0px 10px 20px 20px rgba(155, 107, 241, 0.8); /* Glow effect */
+        }
+        
+      /* WOrks Section */
+      
+      .container {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 60px;
+        }
+
+        .card {
+            position: relative;
+            width: 250px;
+            height: 400px;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(126, 61, 255, 0.8), 0 0 25px rgba(126, 61, 255, 0.6); /* Purple glow */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px 20px rgba(155, 107, 241, 0.8); /* Stronger glow on hover */
+        }
+
+        .card img {
+            width: 100%;
+            height: 65%;
+            border-radius: 40px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for smooth effect */
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: #b3b3b3;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: #666666;
+            margin-top: 5px;
+        }
+
+        .card-hover-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #B6A6FF;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .card:hover .card-hover-info {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0px 10px 20px 20px rgba(155, 107, 241, 0.8);
+        }
+
+        .see-more-btn {
+            background-color: #B6A6FF; /* Purple button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .see-more-btn:hover {
+            background-color: #520dc2;
+        }
+        
+         /* Skills Section */
+        .skills-section {
+            display: flex;
+            margin top:1px;
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center;    /* Center items horizontally */
+            padding: 50px;
+        }
+
+        /* Text area */
+        .skills-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        .skills-text h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .skills-text h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: white;
+            margin: 10px auto;
+        }
+
+        .skills-text p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            max-width: 800px; /* Limit the width for better readability */
+            margin: 0 auto 20px auto; /* Center the paragraph */
+        }
+
+        /* Flexbox layout for skills */
+        .skills-cards {
+            display: flex;
+            justify-content: space-between; /* Space between cards */
+            align-items: center;
+            width: 100%; /* Ensure it uses the entire width */
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background-color: #1e1e1e;
+            padding: 20px;
+            width: 220px; /* Fixed width for all skill cards */
+            text-align: center;
+            border-radius: 30px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+            border: 2px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 25px rgba(155, 107, 241, 0.8);
+            border-color: #B6A6FF;
+        }
+
+        .skill-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Image area */
+        .skills-image {
+            margin-top: 40px;      /* Space above the image */
+            text-align: center;    /* Center the image */
+        }
+
+        .skills-image img {
+            border-radius: 40px;
+            width: 500px;
+            max-width: 100%;       /* Make the image responsive */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skills-image img:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px 20px rgba(155, 107, 241, 0.8);
+        }
+
+        /* Responsive: Stack columns for smaller screens */
+        @media (max-width: 768px) {
+            .skills-cards {
+                flex-wrap: wrap; /* Allow wrapping for smaller screens */
+                justify-content: center; /* Center cards when wrapped */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-cards {
+                flex-direction: column; /* Stack cards in a column for extra small screens */
+                align-items: center;
+            }
+        }
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        /* Title */
+        .contact-section h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-section h1 span {
+            color: #9b6bf1;
+        }
+
+        .contact-section h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: white;
+            margin: 10px auto;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            background-color: #121212;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #9b6bf1;
+            align-items: center;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border-radius: 10px;
+            background-color: #121212;
+            color: white;
+            font-size: 1em;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #B3A9F4;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        /* Submit Button */
+        .contact-form button {
+            width: 50%;
+            padding: 15px 30px;
+            background-color: #9b6bf1;
+            color: white;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            align-self: center;
+        }
+
+        .contact-form button:hover {
+            background-color: #b68cff;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            width:1000%;
+           
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        .footer .social-icons {
+            margin: 20px 0;
+        }
+
+        .footer .social-icons a {
+            color: #B3A9F4;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+
+        .footer .social-icons a:hover {
+            color: #9b6bf1;
+        }
+
+        .footer p {
+          
+            color:white;
+        }
+
+        .footer h3 {
+            
+            font-size: 1.2em;
+            font-weight: 400;
+        }  
+        
+        
+        
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="active">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#works">Works</a>
+        <a href="#skills">Skills</a>
+        <a href="#contactme" class="btn">Contact</a>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container">
+        <!-- Left Section (Text Content) -->
+        <div class="text-section">
+            <h1>Hello</h1>
+            <h1>I am <span>MANASA SHANKAR</span></h1>
+            <h3 style="color:#a9a9a9;">A Design Enthusiast</h3>
+            <hr align="left" width="30%" size="3" color="white" noshade><br>
+            <p class="description">Welcome to my portfolio! Here, you'll find a showcase of my work, skills, and passion for design. I’m dedicated to delivering creative solutions and continuous growth in everything I do. Take a look around to explore my projects and get to know me better. Let's connect and create something amazing together!</p><br><br>
+
+            <!-- Buttons -->
+            <div class="buttons">
+                <a href="#" class="btn btn-primary">Download CV</a>
+                <a href="#" class="btn">More</a>
+            </div>
+        </div>
+
+        <!-- Right Section (Profile Picture) -->
+        <div class="profile-pic">
+            <img src="https://i.pinimg.com/736x/41/6a/47/416a4741bd1cfb249a9ea1d9766a9bef.jpg" alt="Profile Picture">
+        </div>
+    </div>
+       
+    <!-- Hero Section with Video Background -->
+
+
+    <div class="hero-section">
+        <h1>CREATE HISTORY</h1>
+        <p>Empower yourself to reach new heights by following a structured path to growth with me</p>
+        <button class="btn">Start Now</button>
+    </div>
+     <br>
+     <br>
+     <br>
+<
+    <section>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="https://videos.pexels.com/video-files/3248275/3248275-sd_640_360_25fps.mp4" type="video/mp4">
+            Your Browser doesnt read this video
+        </video>
+    </div>
+    </section>
+<!-- About Me Section -->
+    <section class="about-section">
+        <!-- Text Section -->
+        <div class="about-text" id="about">
+            <h1>ABOUT ME</h1><br>
+            <p>I am Manasa Shankar, a passionate UI/UX and Interaction Designer with a love of creating and problem-solving.</p>
+            <p>I see the world around me as design! Rather than solely relying on books and online resources, I learn through real-world experiences and observations of things around me which I believe makes me different from others.</p>
+            <p>I love to collaborate, communicate, and bring fresh ideas to the table. I look forward to presenting my skills while parallely expanding my knowledge in the evolving design landscape.</p>
+            <button class="learn-more-btn">Learn More</button>
+        </div>
+
+        <!-- Image Section -->
+        <div class="about-image">
+            <img src="https://i.pinimg.com/736x/f6/4a/73/f64a73c1f20524c6d408e0045d908796.jpg" alt="Manasa Shankar">
+        </div>
+    </section>
+    
+    <!-- WOrks Section -->
+    <div class="container" id="works">
+    <h1>WORKS</h1><br><br>
+    <div class="card-container">
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/b9/d0/04/b9d00440318973e6b985898893361b03.jpg" alt="Modernizing the stove">
+            <div class="card-content">
+                <h3 class="card-title">Home Decor Brand</h3>
+                <p class="card-subtitle">Branding</p>
+            </div>
+            <div class="card-hover-info">
+                <p>This is a unique project of creating our own brand with all the brand guidelines and brainstorming process.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/09/61/f5/0961f50dc3b8f1b5fbb8e45e9f3e46d6.jpg">
+            <div class="card-content">
+                <h3 class="card-title">Modernizing the stove</h3>
+                <p class="card-subtitle">UI/UX</p>
+            </div>
+            <div class="card-hover-info">
+                <p>This project focuses on improving the usability and design of kitchen appliances through a modernized stove interface.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/8e/0d/88/8e0d88d5a5578908b8f8436bea7300cf.jpg" alt="Digitising the door">
+            <div class="card-content">
+                <h3 class="card-title">Digitising the door</h3>
+                <p class="card-subtitle">Interaction Design</p>
+            </div>
+            <div class="card-hover-info">
+                <p>Exploring interaction design principles with smart door technology for enhanced home security.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/8a/21/76/8a2176c7bd44bc10b2cc78ca224196f5.jpg">
+            <div class="card-content">
+                <h3 class="card-title">Watch Website</h3>
+                <p class="card-subtitle">Website Design</p>
+            </div>
+            <div class="card-hover-info">
+                <p>A luxury watch website design that emphasizes style, elegance, and smooth user experience.</p>
+            </div>
+        </div>
+    </div><br><br>
+     <button class="see-more-btn">See More</button><br><br>
+     
+      <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <!-- Text Section -->
+        <div class="skills-text">
+            <h1>SKILLS</h1><br>
+            <p>Here are the skills I've honed as a designer, combining creativity with technical expertise to bring ideas to life over the years as a UI/UX Designer and Interaction Specialist. My goal is to blend aesthetics with functionality to deliver memorable user experiences.</p><br>
+            <div class="skills-cards">
+                <div class="skill-card">
+                    <h3>Software Skills</h3>
+                    <p> I am familiars with tools like Figma, Adobe XD, Photoshop , Illustrator and Sketch up.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Prototyping</h3>
+                    <p>Building interactive prototypes to test design solutions and enhance the user experience.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Interaction Design</h3>
+                    <p>Crafting engaging and seamless interactions that create a positive user journey.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Graphic Design</h3>
+                    <p>Expertise in color theory, typography, and visual hierarchy for impactful design.</p>
+                </div>
+            </div>
+        </div><br><br>
+
+        <!-- Image Section -->
+        <div class="skills-image">
+            <img src="https://i.pinimg.com/564x/1d/fe/0f/1dfe0f0f330ef4b5f234045d4d39b2c9.jpg" alt="Skills Image">
+        </div>
+    </section>
+
+ <!-- Contact Section -->
+    <section class="contact-section" id="contactme">
+        <h1>Contact <span>Me</span></h1>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Full name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <textarea name="message" placeholder="Your message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3>Let's Connect!</h3>
+        <p>@Manasa Shankar, all rights reserved</p>
+    </footer>
+</body>
+
+</html>
